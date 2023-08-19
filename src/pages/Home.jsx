@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
-import Carousel from "../components/carousel"
+import Carousel from "../components/Carousel"
 import axios from "axios"
 import { Link as Anchor } from 'react-router-dom'
 import IconoAnimado from '../components/IconoAnimado'
+import apiUrl from '../../src/apiUrl.js'
 
 export default function Home() {
 
@@ -10,8 +11,9 @@ export default function Home() {
 
     useEffect(
         () => {
-            axios('/data.json')
-                .then(res => setData(res.data))
+            axios(apiUrl+'cities/carousel')
+                //.then(res => console.log(res.data.data_carousel))
+                .then(res => setData(res.data.data_carousel))
                 .catch(err => console.log(err))
         }, //callback, no retorna nada y no puede ser asincrona (por eso le pongo llaves)
         []       //Array de dependencias - Cuando está vacio se ejecuta una sola vez cuando se monta el componente.
