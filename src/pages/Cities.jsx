@@ -56,7 +56,7 @@ export default function Cities() {
             </div>
                 <div className="flex w-full items-center justify-between px-6 mt-12 ">
                     <div className="relative flex flex-wrap justify-between">
-                        {cities.map(each => <Card key={each._id} src={each.photo} alt={each.id} text={each.city} country={each.country} id={each.id}/>)}
+                        {cities.map(each => <Card key={each._id} src={each.photo} alt={each.id} text={each.city} country={each.country} id={each._id}/>)}
                     </div>
                 </div>
             </div>
