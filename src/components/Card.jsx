@@ -11,7 +11,7 @@ export default function Card( {src,alt,text,country,id} ) {
                 </svg>{country}</p>
             </div>
             <div className="flex items-center justify-center sm:w-full sm:justify-start absolute top-[9rem] left-5">
-                <Anchor to='/cities/:city_id' className="w-[80px] h-[20px] bg-[#4F46E5] hover:bg-sky-600 flex text-white text-xs items-center justify-center shadow-xl">View More</Anchor>
+                <Anchor to={ '/city/'+id } className="w-[80px] h-[20px] bg-[#4F46E5] hover:bg-sky-600 flex text-white text-xs items-center justify-center shadow-xl">View More</Anchor>
             </div>
         </div>
     )
