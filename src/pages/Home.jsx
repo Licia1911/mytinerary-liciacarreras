@@ -4,17 +4,27 @@ import axios from "axios"
 import { Link as Anchor } from 'react-router-dom'
 import IconoAnimado from '../components/IconoAnimado'
 import apiUrl from '../../src/apiUrl.js'
+import { useSelector,useDispatch } from "react-redux"
+import city_actions from "../store/actions/cities"
+const {read_carousel} = city_actions
 
 export default function Home() {
 
-    const [data, setData] = useState([])
+    //const store = useSelector(store => store)
+    //console.log(store)
+    //const city_reducer = useSelector(store => store.cities)
+    //console.log(city_reducer)
+    const carousel = useSelector(store => store.cities.carousel)
+    console.log(carousel)
+    const dispatch = useDispatch()
+    
 
     useEffect(
         () => {
-            axios(apiUrl+'cities/carousel')
-                //.then(res => console.log(res.data.data_carousel))
-                .then(res => setData(res.data.data_carousel))
-                .catch(err => console.log(err))
+            if( carousel.length === 0 ) {
+                dispatch(read_carousel())
+            }
+
         }, //callback, no retorna nada y no puede ser asincrona (por eso le pongo llaves)
         []       //Array de dependencias - Cuando está vacio se ejecuta una sola vez cuando se monta el componente.
         //Cuando tiene variables de dependencia el EFECTO se ejecuta cada vez que cambia alguna de esas variables.
@@ -39,7 +49,7 @@ export default function Home() {
             </div>
             <div className="w-full h-[600px] flex flex-col items-center justify-center sm:mr-20 md:w-[500px]">
                 <h1 className="text-[18px] font-bold">"Popular Mytineraries"</h1>
-                <Carousel data={data} />
+                <Carousel data={carousel} />
             </div>
 
         </main>

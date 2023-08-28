@@ -1,24 +1,24 @@
 import { useEffect, useState, useRef } from "react"
-import axios from "axios"
-import apiUrl from '../../src/apiUrl.js'
 import Card from "../components/Card"
 import CityNotFound from "../components/CityNotFound.jsx"
 import IconoAnimado from "../components/IconoAnimado.jsx"
+import { useSelector, useDispatch } from "react-redux" 
+import  city_actions  from '../store/actions/cities'
+const { read_cities } = city_actions
+
 
 
 export default function Cities() {
-
-    const [cities, setCities] = useState([])
+    const cities = useSelector(store => store.cities.cities)
     const [reEffect, setReEffect] = useState(true)
     const text = useRef()
+    const dispatch = useDispatch()
+    console.log(cities)
 
 
     useEffect(
         () => {
-            axios(apiUrl + 'cities?city=' + text.current.value)
-                //.then(res => console.log(res.data.response))
-                .then(res => setCities(res.data.response))
-                .catch(err => console.log(err))
+            dispatch( read_cities({text: text.current?.value}) )
         }, //callback, no retorna nada y no puede ser asincrona (por eso le pongo llaves)
         [reEffect]       //Array de dependencias - Cuando está vacio se ejecuta una sola vez cuando se monta el componente.
         //Cuando tiene variables de dependencia el EFECTO se ejecuta cada vez que cambia alguna de esas variables.
