@@ -13,7 +13,7 @@ export default function Cities() {
     const [reEffect, setReEffect] = useState(true)
     const text = useRef()
     const dispatch = useDispatch()
-    console.log(cities)
+    //console.log(cities)
 
 
     useEffect(
@@ -25,7 +25,7 @@ export default function Cities() {
     )
 
     function handleFilter() {
-        console.log(text.current.value)
+        //console.log(text.current.value)
         setReEffect(!reEffect)
     }
 
@@ -34,9 +34,9 @@ export default function Cities() {
         <main className="flex flex-col grow">
             <div className='h-[50vh] bg-cover bg-center justify-center items-center flex' style={{ backgroundImage: `url(./img/welcome.jpg)` }}>
 
-                <div className='flex flex-col justify-center w[20px] items-center'>
-                    <p className='text-5xl bg-slate-300 rounded-xl'>Cities</p>
-                    <p className='text-3xl bg-slate-300 rounded-xl mb-8'>Collection of the most beatiful places and experience</p>
+                <div className='flex flex-col justify-center w[20px] items-center p-2'>
+                    <p className='text-5xl bg-slate-300 rounded-xl p-2'>Cities</p>
+                    <p className='text-3xl bg-slate-300 rounded-xl mb-8 p-2'>Collection of the most beatiful places and experience</p>
                     <IconoAnimado />
                 </div>
             </div>
