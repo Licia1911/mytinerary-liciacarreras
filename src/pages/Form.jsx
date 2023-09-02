@@ -2,16 +2,17 @@ import { useRef, useState } from 'react'
 import axios from 'axios'
 import apiUrl from '../apiUrl'
 import IconoAnimado from '../components/IconoAnimado'
+import { Link as Anchor } from 'react-router-dom'
 
 
 export default function Form() {
 
-    const name = useRef("")
-    const lastName = useRef("")
-    const country = useRef("")
-    const photo = useRef("")
-    const mail = useRef("")
-    const password = useRef("")
+    const name = useRef()
+    const lastName = useRef()
+    const country = useRef()
+    const photo = useRef()
+    const mail = useRef()
+    const password = useRef()
 
     const [changeForm, setChangeForm] = useState(true)
 
@@ -25,10 +26,10 @@ export default function Form() {
                 mail: mail.current.value,
                 password: password.current.value
             }
-            await axios.post(
-                apiUrl + 'users/signup',
-                data
-            )
+            // await axios.post(
+            //     apiUrl + 'users/signup',
+            //     data
+            // )
             console.log(data);
 
         } catch (error) {
@@ -52,17 +53,21 @@ export default function Form() {
                     </div>
                     <div className='flex items-end justify-center'>
                         <div className=' w-[150px] text-[12px] border-b border-[#1c1c1c] h-[30px] m-2'></div>
-                        <img src="../../public/img/O.png" alt="O" className='flex m-2'/>
+                        <img src="../../public/img/O.png" alt="O" className='flex m-2' />
                         <div className=' w-[150px] text-[12px] border-b border-[#1c1c1c] h-[30px] m-2'></div>
                     </div>
                     <p className=' text-[12px] tetx-[#1C1C1C] font-semibold mt-4'>Sign up with email</p>
-                    <p className=' text-[12px] tetx-[#1C1C1C] pb-2'>Already have an account? <span className='text-bold cursor-pointer text-blue-600 underline '>Sign in</span></p>
+                    <div className='flex items-center w-[400px] pt-2'>
+                        <p className='text-[12px] tetx-[#1C1C1C] p-1'>Already have an account?</p>
+                        <Anchor to={'/signin'} className=" text-[#4F46E5] hover:text-sky-600 flex text-[12px] ">Sign In </Anchor>
+                    </div>
+
                     <form className=' text-[12px] mb-4'>
                         <input ref={mail} type="text" className=' w-[346px] text-[12px] border-b border-[#1c1c1c] h-[60px]' name='mail' id='mail' placeholder='Email' />
                         <input ref={password} type="password" className=' w-[346px] text-[12px] border-b border-[#1c1c1c] h-[60px]' name='password' id='password' placeholder='Password' />
                     </form>
                     <div className="flex h-[80px] items-end justify-end">
-                        <div className="rounded-md bg-[#4F46E5] hover:bg-sky-600 text-white text-[16px] text-center cursor-pointer w-[100px] h-13 p-1 mb-2 mr-2" onClick={() => setChangeForm(!changeForm)} >Continue </div>
+                        <button className="rounded-md bg-[#4F46E5] hover:bg-sky-600 text-white text-[16px] text-center cursor-pointer w-[100px] h-13 p-1 mb-2 mr-2" onClick={() => setChangeForm(!changeForm)} >Continue </button>
                     </div>
                 </div> : <div className='flex  flex-col w-[400px] h-[500px] bg-neutral-50 p-6 '>
                     <p className=' text-[12px] tetx-[#1C1C1C] pb-3'>step 2 of 2</p>
@@ -77,10 +82,10 @@ export default function Form() {
                     <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
                         <select id="countries" className=" w-[166px] flex text-sm">
                             <option >Country/Region</option>
+                            <option  ref={country}>Argentina</option>
                             <option  ref={country}>United States</option>
                             <option  ref={country}>Canada</option>
                             <option  ref={country}>France</option>
-                            <option  ref={country}>Germany</option>
                         </select>
                     </div>
                     <div className="flex">
@@ -94,9 +99,8 @@ export default function Form() {
                     <div>
                         <p className='text-[12px] tetx-[#1C1C1C] mt-4'>By clicking Create account, I agree that I have read and accepted the <span className='text-blue-600 underline cursor-pointer'>Terms of Use</span>Terms of Use and <span className='text-blue-600 underline cursor-pointer'>Privacy Policy</span>.</p>
                     </div>
-                    <div className="flex h-[80px] items-end justify-end">
-                        <div className="rounded-md bg-[#4F46E5] hover:bg-sky-600 text-white text-[16px] text-center cursor-pointer w-[100px] h-13 p-1 mb-2 mr-2" onClick={handleSignUp}>Continue </div>
-                    </div>
+
+                    < input type='button' className="rounded-md bg-[#4F46E5] hover:bg-sky-600 text-white text-[16px] text-center cursor-pointer w-[100px] h-13 p-1 mb-2 mr-2 items-end justify-end" onClick={handleSignUp} value="Continue" />
                 </div>}
 
             </div>
