@@ -16,12 +16,12 @@ export default function SingIn() {
     const [changeForm, setChangeForm] = useState(true)
 
     return (
-        <div className="row flex h-[100vh] bg-cover bg-center justify-around items-center" style={{ backgroundImage: `url(./img/backgroundLog.jpg)` }}>
-            <div className="w-[50%] flex items-center pl-20 pb-16">
+        <div className=" flex flex-col h-[120vh] bg-cover bg-center justify-around items-center sm:flex-row" style={{ backgroundImage: `url(./img/backgroundLog.jpg)` }}>
+            <div className="w-[50%] flex items-center text-center justify-center md:pl-20 pb-16 mt-20">
                 <h1 className="text-4xl mx-3 font-bold" >My Tinerary</h1>
                 <IconoAnimado />
             </div>
-            {changeForm ? <div className='flex flex-col w-[400px] h-[480px] bg-neutral-50 p-10'>
+            {changeForm ? <div className='flex flex-col w-[360px] h-[480px] bg-neutral-50 p-10 md:w-[400px]'>
                 <div>
                     <p className=' text-[12px] tetx-[#1C1C1C] pb-1'>step 1 of 2</p>
                     <h1 className=' text-[30px] font-semibold items-start justify-center pb-4'>Sign in</h1>
