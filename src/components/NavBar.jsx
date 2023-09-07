@@ -1,14 +1,16 @@
 import { useState } from "react"
 import Display from "./Display"
 import Label from "./Label"
-import LoginIcon from "./LoginIcon"
+
+import LogIn_Out from "./LogIn_Out"
+import user_actions from "../store/actions/users"
+const { signout } =user_actions
 
 export default function NavBar() {
     let [show, setShow] = useState(false)
     let options = [
         {to: '/', title:'Home'},
         {to: '/cities', title:'Cities'},
-        {to: '/signin', title:'Login', icon: <LoginIcon />, backgroundColor:"#4F46E5", color:"white"}
         
     ]
 
@@ -24,6 +26,8 @@ export default function NavBar() {
                 </svg>
                 {show ? <Display options={options} /> : (null)}
                 <Label options={options}/>
+                <LogIn_Out />
+
             </div>
         </header>
     )
