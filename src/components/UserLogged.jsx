@@ -10,6 +10,7 @@ export default function UserLogged() {
     let mail = useSelector((store) => store.users.user?.mail);
     let name = useSelector((store) => store.users.user?.name);
     let photo = useSelector((store) => store.users.user?.photo);
+    console.log(photo)
     return (
         <div>
             {mail && ( // Verifica si el usuario está autenticado

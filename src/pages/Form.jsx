@@ -6,6 +6,7 @@ import IconoAnimado from '../components/IconoAnimado'
 import { Link as Anchor } from 'react-router-dom'
 
 
+
 export default function Form() {
 
     const name = useRef("")
@@ -24,6 +25,10 @@ export default function Form() {
                 photo: photo.current.value,
                 mail: mail.current.value,
                 password: password.current.value
+            }
+
+            if (photo.current.value === "") {
+                delete data.photo
             }
 
             await axios.post(
@@ -55,7 +60,7 @@ export default function Form() {
                     </div>
 
                     <p className=' text-[12px] tetx-[#1C1C1C] font-semibold mt-4'>Sign up with email</p>
-                    <Anchor to='/auth/signin' className=' text-[12px] tetx-[#1C1C1C] pb-2'>Already have an account? <span className='text-bold cursor-pointer text-blue-600 underline '>Sign in</span></Anchor>
+                    <Anchor to='/signin' className=' text-[12px] tetx-[#1C1C1C] pb-2'>Already have an account? <span className='text-bold cursor-pointer text-blue-600 underline '>Sign in</span></Anchor>
                     <form className=' text-[12px] mb-4'>
                         <input ref={mail} type="text" className=' w-[346px] text-[12px] border-b border-[#1c1c1c] h-[60px]' name='mail' id='mail' placeholder='Email' />
                         <input ref={password} type="password" className=' w-[346px] text-[12px] border-b border-[#1c1c1c] h-[60px]' name='password' id='password' placeholder='Password' />
@@ -64,13 +69,13 @@ export default function Form() {
                         <input ref={photo} type="text" className=' w-[346px] text-[12px] border-b border-[#1c1c1c] h-[60px]' name='photo' id='photo' placeholder='Type Photo' />
                         <div className='flex items-center justify-start w-full mt-2'>
                             <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
-                            <select id="countries" className=" w-[166px] flex text-sm">
+                            <select ref={country} id="countries" className=" w-[166px] flex text-sm">
                                 <option >Country/Region</option>
-                                <option ref={country}>Argentina</option>
-                                <option ref={country}>United States</option>
-                                <option ref={country}>Canada</option>
-                                <option ref={country}>France</option>
-                                <option ref={country}>Germany</option>
+                                <option value="Argentina" >Argentina</option>
+                                <option value="United States">United States</option>
+                                <option value="Canada">Canada</option>
+                                <option value="France">France</option>
+                                <option value="Germany">Germany</option>
                             </select>
                         </div>
                         <div className="flex">

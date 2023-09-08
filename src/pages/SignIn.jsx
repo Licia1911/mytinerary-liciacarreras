@@ -29,7 +29,7 @@ export default function FormSignIn() {
         <>
             <div className=" flex flex-col h-[120vh] bg-cover bg-center justify-around items-center sm:flex-row" style={{ backgroundImage: `url(./img/backgroundLog.jpg)` }}>
                 <div className="flex flex-col">
-                    <UserLogged/>
+                    <UserLogged />
                     <div className="w-[50%] flex flex-col items-center text-center justify-center md:pl-20 pb-16 mt-20">
                         <h1 className="text-4xl mx-3 font-bold mb-16" >My Tinerary</h1>
                         <IconoAnimado />
@@ -82,11 +82,6 @@ export default function FormSignIn() {
 
                 </div>
             </div>
-
-
-
-
-
 
         </>
     )
