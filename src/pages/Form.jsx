@@ -1,5 +1,4 @@
 import { useRef } from 'react'
-import { useState } from 'react'
 import axios from 'axios'
 import apiUrl from '../apiUrl'
 import IconoAnimado from '../components/IconoAnimado'

@@ -12,14 +12,17 @@ const { read_itineraries_from_city } = itinerary_actions
 
 
 
+
+
 export default function CityDetails() {
-    
+
     const [show, setShow] = useState(false)
     const { city_id } = useParams()
     const dispatch = useDispatch()
     const city = useSelector(store => store.cities.city)
     const itineraries = useSelector(store => store.itineraries.itineraries_from_city)
     console.log(itineraries)
+
 
     // const [mostrarIt, setMostrarIt] = useState(false)
 
@@ -64,6 +67,7 @@ export default function CityDetails() {
                             duration={each.duration}
                             tags={each.tags}
                             photo={each.photo}
+                            id={each._id}
                         />
                     ))
                 ) : (
