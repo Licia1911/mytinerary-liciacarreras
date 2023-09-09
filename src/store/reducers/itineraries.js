@@ -7,7 +7,7 @@ const initial_state = {
 
 }
 
-const itinerary_reducer = createReducer (
+const itinerary_reducer = createReducer(
     initial_state,
     builder => builder.addCase(
         read_itineraries_from_city.fulfilled,
@@ -19,16 +19,6 @@ const itinerary_reducer = createReducer (
             return new_state
         }
     )
-    // .addCase(
-    //     read_itinerary.fulfilled,
-    //     (state, action) => {
-    //         let new_state = {
-    //             ...state,
-    //             itinery: action.payload.itinerary
-    //         }
-    //         return new_state
-    //     }
-    // )
 )
 
 export default itinerary_reducer
