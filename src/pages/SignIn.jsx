@@ -1,14 +1,16 @@
 import { useRef } from "react"
-import { Link as Anchor } from "react-router-dom"
+import { Link as Anchor, useNavigate } from "react-router-dom"
 import IconoAnimado from "../components/IconoAnimado"
 import { useDispatch, useSelector } from "react-redux"
 import user_actions from "../store/actions/users"
 import UserLogged from "../components/UserLogged"
 const { signin } = user_actions
+import Swal from "sweetalert2"
 
 
 export default function FormSignIn() {
 
+    const navigate = useNavigate()
     const mail_signin = useRef()
     const password_signin = useRef()
     const dispatch = useDispatch()
@@ -19,6 +21,27 @@ export default function FormSignIn() {
             password: password_signin.current.value,
         };
         dispatch(signin({ data }))
+            .then(res => {
+                console.log(res)
+                if (res.payload.token) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Logged in!',
+                    });
+                    navigate("/");
+                } else if (res.payload.messages.length > 0) {
+                    //let html = res.payload.messages.join('<br>')
+                    let html = res.payload.messages
+                        .map((each) => `<p>${each}</p>`)
+                        .join("");
+                    Swal.fire({
+                        title: "Something went wrong!",
+                        icon: "error",
+                        html,
+                    });
+                }
+            })
+            .catch(err => console.log(err))
     }
     let user = useSelector(store => store.users.user)
     console.log(user)
@@ -57,7 +80,7 @@ export default function FormSignIn() {
 
                         <input
                             ref={mail_signin}
-                            type="text"
+                            type="email"
                             className=" w-[350px] text-[12px] border-b  h-[60px]"
                             name="mail_signin"
                             id="mail_signin"
