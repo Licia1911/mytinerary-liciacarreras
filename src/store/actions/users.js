@@ -4,16 +4,16 @@ import apiUrl from "../../apiUrl";
 
 const read_user = createAsyncThunk(
     'read_user',
-    async({userId})=>{
+    async ({ userId }) => {
         try {
-            let data = await axios(apiUrl+'users/'+userId)
+            let data = await axios(apiUrl + 'users/' + userId)
             console.log(data)
-            return{
+            return {
                 user: data.data.response
             }
         } catch (error) {
             console.log(error)
-            return{
+            return {
                 users: []
             }
         }
@@ -21,33 +21,35 @@ const read_user = createAsyncThunk(
 )
 const signin = createAsyncThunk(
     'signin',
-    async(obj)=>{
+    async (obj) => {
         try {
-            let data = await axios.post(apiUrl+'auth/signin',obj.data)
+            let data = await axios.post(apiUrl + 'auth/signin', obj.data)
             console.log(data);
-            localStorage.setItem('token',data.data.response.token)
+            localStorage.setItem('token', data.data.response.token)
             return {
                 user: data.data.response.user,
-                token: data.data.response.token
+                token: data.data.response.token,
+                messages: []
             }
         } catch (error) {
             console.log(error);
             return {
                 user: {},
-                token: ''
+                token: '',
+                messages: error.response.data.messages || [error.response.data.message]
             }
         }
     }
 )
 const signin_token = createAsyncThunk(
     'signin_token',
-    async()=> {
+    async () => {
         try {
             let token = localStorage.getItem('token')
-            let authorization = { headers:{ 'Authorization':`Bearer ${token}` } }
-            let data = await axios.post(apiUrl+'auth/token',null,authorization)
+            let authorization = { headers: { 'Authorization': `Bearer ${token}` } }
+            let data = await axios.post(apiUrl + 'auth/token', null, authorization)
             //console.log(data);
-            localStorage.setItem('token',data.data.response.token)
+            localStorage.setItem('token', data.data.response.token)
             return {
                 user: data.data.response.user,
                 token: data.data.response.token
@@ -64,11 +66,11 @@ const signin_token = createAsyncThunk(
 
 const signout = createAsyncThunk(
     'signout',
-    async()=> {
+    async () => {
         try {
             let token = localStorage.getItem('token')
-            let authorization = { headers:{ 'Authorization':`Bearer ${token}` } }
-            let data = await axios.post(apiUrl+'auth/signout',null,authorization)
+            let authorization = { headers: { 'Authorization': `Bearer ${token}` } }
+            let data = await axios.post(apiUrl + 'auth/signout', null, authorization)
             //console.log(data);
             localStorage.removeItem('token')
             return {
@@ -85,5 +87,46 @@ const signout = createAsyncThunk(
     }
 )
 
-const user_actions = { read_user, signin, signin_token, signout }
+const register = createAsyncThunk(
+    'register',
+    async (obj) => {
+        try {
+            let data = await axios.post(apiUrl + 'auth/register', obj.data)
+            console.log(data);
+            return {
+                success: data.data.success,
+                userId: data.data.response
+            }
+        } catch (error) {
+            console.log(error);
+            return {
+                messages: error.response.data.messages || [error.response.data.message]
+            }
+        }
+    }
+)
+
+const update_user = createAsyncThunk(
+    'update_user',
+    async (obj) => {
+        try {
+            let token = localStorage.getItem('token')
+            let authorization = { headers: { 'Authorization': `Bearer ${token}` } }
+            let data = await axios.put(apiUrl + 'users', obj.data, authorization)
+            console.log(data);
+            return {
+                user: data.data.response
+            }
+        } catch (error) {
+            console.log(error);
+            return {
+                user: {}
+            }
+        }
+
+    }
+)
+
+
+const user_actions = { read_user, signin, signin_token, signout, update_user, register }
 export default user_actions

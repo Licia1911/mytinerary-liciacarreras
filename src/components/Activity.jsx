@@ -1,35 +1,44 @@
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import activity_actions from "../store/actions/activities"
-import { useEffect } from "react"
 const { read_activities_from_itinerary } = activity_actions
+import { useEffect, useState } from "react"
+import axios from "axios"
+import apiUrl from "../apiUrl"
 
 
 
-
-export default function Activity({ itinerary_id }) {
-
-    const dispatch = useDispatch()
-    const activities = useSelector(store => store.activities.activities_from_itinerary)
-    console.log(activities)
+export default function Activity({ id }) {
 
 
 
-    // useEffect(
-    //     () => {
-    //         dispatch(read_activities_from_itinerary({ itinerary_id: itinerary_id }))
-    //     }, []
-    // )
+    const [activities, setActivities] = useState()
+    // let name = useSelector((store =>store.activities?.activities_from_itinerary));
+    // console.log(name)
+    const fillActivities = () => {
+        console.log(id)
+        axios(apiUrl + 'activities?itinerary_id=' + id)
+            .then(res => setActivities(res.data.response))
+            .catch(err => {
+                setActivities([])
+                console.log(err)
+            })
+    }
+    useEffect(
+        () => {
 
-
+            fillActivities()
+        }, []
+    )
     return (
         <>
-            <div className="w-[250px] h-[300px] flex items-center justify-start bg-slate-100 mb-4 sm:w-[750px] ">
-                {activities?.map(each => <div key={each._id} className="w-[220px] h-[130px] flex flex-col items-center justify-center p-2 m-4 bg-slate-300 rounded-xl">
-                    <img className="w-[180px] h-[90px] rounded-xl mt-2" src={each.photo} alt={each.name} />
-                    <p className="text-[14px] font-bold mt-1">{each.name}</p>
+            <div className="w-[350px] h-[300px] flex items-center  justify-start bg-slate-100 mb-4 sm:w-[750px] ">
+                {activities?.map(each => <div key={each._id} className="w-5/12 flex flex-col rounded-xl h-[190px] items-center p-2 m-4 bg-slate-300">
+                    <img className="w-[240px] h-[130px]" src={each.photo} alt={each.name} />
+                    <p className="text-[16px] font-bold">{each.name}</p>
                 </div>
                 )}
             </div>
         </>
     )
+
 }

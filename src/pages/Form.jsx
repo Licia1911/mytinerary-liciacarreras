@@ -1,46 +1,71 @@
 import { useRef } from 'react'
-import axios from 'axios'
-import apiUrl from '../apiUrl'
-import IconoAnimado from '../components/IconoAnimado'
-import { Link as Anchor } from 'react-router-dom'
+import Swal from "sweetalert2";
+import { Link as Anchor, useNavigate } from 'react-router-dom'
+import IconoAnimado from '../components/IconoAnimado';
+import { useDispatch } from "react-redux"
+import user_actions from '../store/actions/users'
+const { register } = user_actions;
 
 
-
-export default function Form() {
-
+export default function FormSignUp() {
+    const navigate = useNavigate();
     const name = useRef("")
     const lastName = useRef("")
     const country = useRef("")
     const photo = useRef("")
     const mail = useRef("")
     const password = useRef("")
+    const dispatch = useDispatch()
+
+    let countries = ["Argentina", "France", "Spain", "Canada", "United States", "Germany", "Brazil", "Chile"]
 
     async function handleSignUp() {
-        try {
-            let data = {
-                name: name.current.value,
-                lastName: lastName.current.value,
-                country: country.current.value,
-                photo: photo.current.value,
-                mail: mail.current.value,
-                password: password.current.value
-            }
 
-            if (photo.current.value === "") {
-                delete data.photo
-            }
-
-            await axios.post(
-                apiUrl + 'auth/register',
-                data
-            )
-
-            console.log(data);
-
-        } catch (error) {
-            console.log(error)
+        let data = {
+            name: name.current.value,
+            lastName: lastName.current.value,
+            country: country.current.value,
+            photo: photo.current.value,
+            mail: mail.current.value,
+            password: password.current.value
         }
+
+        if (photo.current.value === "") {
+            delete data.photo
+        }
+
+        try {
+            dispatch(register({ data }))
+                .then(response => {
+                    console.log(response);
+                    if (response.payload.userId) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Successfully registered!',
+                            showConfirmButton: false,
+                            timer: 3500
+                        })
+                        navigate('/signin')
+                    } else {
+                        let html = response.payload.messages.map(each => (`<p>${each}</p>`)).join('');
+                        console.log(html);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Something went wrong!',
+                            html
+                        })
+                    }
+                })
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Register Error',
+                text: 'Something went wrong!',
+            })
+        }
+
     }
+
 
 
     return (
@@ -61,7 +86,7 @@ export default function Form() {
                     <p className=' text-[12px] tetx-[#1C1C1C] font-semibold mt-4'>Sign up with email</p>
                     <Anchor to='/signin' className=' text-[12px] tetx-[#1C1C1C] pb-2'>Already have an account? <span className='text-bold cursor-pointer text-blue-600 underline '>Sign in</span></Anchor>
                     <form className=' text-[12px] mb-4'>
-                        <input ref={mail} type="text" className=' w-[346px] text-[12px] border-b border-[#1c1c1c] h-[60px]' name='mail' id='mail' placeholder='Email' />
+                        <input ref={mail} type="email" className=' w-[346px] text-[12px] border-b border-[#1c1c1c] h-[60px]' name='mail' id='mail' placeholder='Email' />
                         <input ref={password} type="password" className=' w-[346px] text-[12px] border-b border-[#1c1c1c] h-[60px]' name='password' id='password' placeholder='Password' />
                         <input ref={name} type="text" className=' w-[166px] text-[12px] border-b border-[#1c1c1c] h-[60px] m-1' name='name' id='name' placeholder='First Name' />
                         <input ref={lastName} type="text" className=' w-[166px] text-[12px] border-b border-[#1c1c1c] h-[60px]' name='lastName' id='lastName' placeholder='Last Name' />
@@ -69,12 +94,8 @@ export default function Form() {
                         <div className='flex items-center justify-start w-full mt-2'>
                             <label htmlFor="countries" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
                             <select ref={country} id="countries" className=" w-[166px] flex text-sm">
-                                <option >Country/Region</option>
-                                <option value="Argentina" >Argentina</option>
-                                <option value="United States">United States</option>
-                                <option value="Canada">Canada</option>
-                                <option value="France">France</option>
-                                <option value="Germany">Germany</option>
+                                <option value="">Country/Region</option>
+                                {countries.map((country) => (<option key={country} value={country}>{country}</option>))}
                             </select>
                         </div>
                         <div className="flex">

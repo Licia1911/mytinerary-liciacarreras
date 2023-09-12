@@ -6,22 +6,24 @@ import Cities from './pages/Cities'
 import CityDetails from './pages/CityDetails'
 import NotFound from "./pages/NotFound";
 import Form from "./pages/Form";
+import Profile from "./pages/Profile";
 
 
 
 const router = createBrowserRouter([
-    { 
+    {
         path: '/', element: <MainLayout />,
         children: [
-            {path: '/', element: <Home />},
-            {path: '/index', element: <Home />},
-            {path: '/home', element: <Home />},
-            {path: '/signin', element: <SignIn />},
-            {path: '/cities', element: <Cities />},
-            {path: '/city/:city_id', element: <CityDetails />},
-            {path: '/auth/signup', element: <Form />},
-            
-            { path: "/*", element: <NotFound />}
+            { path: '/', element: <Home /> },
+            { path: '/index', element: <Home /> },
+            { path: '/home', element: <Home /> },
+            { path: '/signin', element: <SignIn /> },
+            { path: '/cities', element: <Cities /> },
+            { path: '/city/:city_id', element: <CityDetails /> },
+            { path: '/auth/signup', element: <Form /> },
+            { path: "/profile", element: <Profile /> },
+
+            { path: "/*", element: <NotFound /> }
         ]
     }
 ])
