@@ -39,8 +39,8 @@ export default function Profile() {
         }
     }
     return (
-        <div className="flex grow flex-col h-[120vh] bg-cover bg-center justify-around items-center sm:flex-row" style={{ backgroundImage: `url(../img/update.jpg)` }}>
-            <div className="flex flex-col flex-grow items-center justify-center md:flex-row md:justify-evenly">
+        <div className="flex grow flex-col flex-wrap bg-cover bg-center justify-around items-center sm:flex-row" style={{ backgroundImage: `url(../img/update.jpg)` }}>
+            <div className="flex flex-col flex-wrap grow items-center justify-center md:flex-row md:justify-evenly">
                 <DataUser user={user} show={show} setShow={setShow} />
                 {show && (
                     <form className="flex flex-col items-center justify-between p-[20px] w-[360px] h-[460px] sm:bg-gray-100 my-[20px] md:my-0 mt-[20px]">

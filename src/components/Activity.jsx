@@ -31,9 +31,9 @@ export default function Activity({ id }) {
     )
     return (
         <>
-            <div className="w-[350px] h-[300px] flex items-center  justify-start bg-slate-100 mb-4 sm:w-[750px] ">
-                {activities?.map(each => <div key={each._id} className="w-5/12 flex flex-col rounded-xl h-[190px] items-center p-2 m-4 bg-slate-300">
-                    <img className="w-[240px] h-[130px]" src={each.photo} alt={each.name} />
+            <div className="w-[350px] h-[300px] flex grow items-center  justify-start bg-slate-100 mb-4 sm:w-[650px] ">
+                {activities?.map(each => <div key={each._id} className="w-5/12 flex flex-col rounded-xl h-[190px] items-center p-1 m-4 bg-slate-300">
+                    <img className="w-[200px] h-[130px]" src={each.photo} alt={each.name} />
                     <p className="text-[16px] font-bold">{each.name}</p>
                 </div>
                 )}

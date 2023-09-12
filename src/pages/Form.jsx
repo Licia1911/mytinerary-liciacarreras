@@ -70,7 +70,7 @@ export default function FormSignUp() {
 
     return (
         <>
-            <div className="flex grow flex-col h-[120vh] bg-cover bg-center justify-around items-center sm:flex-row" style={{ backgroundImage: `url(../img/backgroundLog.jpg)` }}>
+            <div className="flex grow flex-col bg-cover bg-center justify-around items-center sm:flex-row" style={{ backgroundImage: `url(../img/backgroundLog.jpg)` }}>
                 <div className="w-[50%] flex items-center text-center justify-center sm:pl-20 pb-10">
                     <h1 className="text-4xl mx-3 font-bold " >My Tinerary</h1>
                     <IconoAnimado />

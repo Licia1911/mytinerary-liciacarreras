@@ -51,14 +51,14 @@ export default function FormSignIn() {
     return (
         <>
             <div className=" flex flex-col h-[120vh] bg-cover bg-center justify-around items-center sm:flex-row" style={{ backgroundImage: `url(./img/backgroundLog.jpg)` }}>
-                <div className="flex flex-col">
+                <div className="flex flex-col justify-center items-center">
                     <UserLogged />
-                    <div className="w-[50%] flex flex-col items-center text-center justify-center md:pl-20 pb-16 mt-20">
+                    <div className="w-[50%] flex flex-col items-center text-center justify-center sm:pl-20 pb-16 mt-20">
                         <h1 className="text-4xl mx-3 font-bold mb-16" >My Tinerary</h1>
                         <IconoAnimado />
                     </div>
                 </div>
-                <div className='flex  flex-col w-[400px]  bg-neutral-50 p-6 ml-[300px] '>
+                <div className='flex flex-col w-[400px]  bg-neutral-50 p-6 lg:ml-[300px] '>
 
                     <h1 className=' text-[20px] items-start justify-center pb-4'>Sign In</h1>
                     <div className=' flex items-center justify-center w-[310px] h-[40px] border border-solid border-slate-900 mt-10 rounded-[80px] p-[15px] cursor-pointer'>
