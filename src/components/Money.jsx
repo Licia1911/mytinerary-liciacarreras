@@ -4,7 +4,7 @@ export default function Money({ money }) {
     const litlemoney = [];
 
     for (let i = 0; i < money; i++) {
-        litlemoney.push(<img src='../public/img/billete.png' className="w-10 h-7 p-1" alt='billete' key={i} />);
+        litlemoney.push(<img src='/img/billete.png' className="w-10 h-7 p-1" alt='billete' key={i} />);
     }
 
     return (

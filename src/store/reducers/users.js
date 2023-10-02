@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import user_actions from "../actions/users";
 
-const { read_user, signin, signin_token, signout, register, update_user } = user_actions;
+const { read_user, signin, signin_token, signout, register, update_user, user_google } = user_actions;
 
 const initial_state = {
     user: [],
@@ -63,7 +63,13 @@ const user_reducer = createReducer(initial_state, (builder) =>
                 }
                 return new_state
             }
-        )
+        ).addCase(user_google, (state, action) => {
+            return {
+                ...state,
+                user: action.payload.user,
+                token: action.payload.token
+            }
+        })
 );
 
 export default user_reducer;

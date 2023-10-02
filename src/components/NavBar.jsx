@@ -18,7 +18,7 @@ export default function NavBar() {
     return (
         <header className=" h-[70px] bg-slate-300 flex items-center justify-between md:ps-[50px] pe-[200px]">
             <div className="flex items-center justify-start">
-                <img className="w-[60px]" src="/public/img/logo_mt.png" alt="Logo My Tinerary" />
+                <img className="w-[60px]" src="/img/logo_mt.png" alt="Logo My Tinerary" />
                 <h1 className="text-xl mx-3 font-bold" >My Tinerary</h1>
             </div>
             <div className="w-[300px] flex justify-between">
