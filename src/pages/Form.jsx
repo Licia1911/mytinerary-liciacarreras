@@ -4,6 +4,7 @@ import { Link as Anchor, useNavigate } from 'react-router-dom'
 import IconoAnimado from '../components/IconoAnimado';
 import { useDispatch } from "react-redux"
 import user_actions from '../store/actions/users'
+import Google from '../components/Google';
 const { register } = user_actions;
 
 
@@ -78,9 +79,8 @@ export default function FormSignUp() {
                 <div className='flex  flex-col  w-[400px]  bg-neutral-50 p-6 '>
 
                     <h1 className=' text-[20px] items-start justify-center pb-2'>Create account</h1>
-                    <div className='flex items-center justify-start '>
-                        <img src="../../public/img/google.png" alt="Google" className=' w-[50px] h[50px] mr-2' />
-                        <img src="../../public/img/faceb.png" alt="Facebook" className=' w-[50px] h[50px]' />
+                    <div className='flex flex-col items-start justify-start '>
+                        <Google />
                     </div>
 
                     <p className=' text-[12px] tetx-[#1C1C1C] font-semibold mt-4'>Sign up with email</p>

@@ -6,6 +6,7 @@ import user_actions from "../store/actions/users"
 import UserLogged from "../components/UserLogged"
 const { signin } = user_actions
 import Swal from "sweetalert2"
+import Google from "../components/Google"
 
 
 export default function FormSignIn() {
@@ -61,14 +62,7 @@ export default function FormSignIn() {
                 <div className='flex flex-col w-[400px]  bg-neutral-50 p-6 lg:ml-[300px] '>
 
                     <h1 className=' text-[20px] items-start justify-center pb-4'>Sign In</h1>
-                    <div className=' flex items-center justify-center w-[310px] h-[40px] border border-solid border-slate-900 mt-10 rounded-[80px] p-[15px] cursor-pointer'>
-                        <img src="../../public/img/google.png" alt="" className='w-[30px] h-[30px] mr-2' />
-                        <p className=' text-[14px] font-semibold ml-2'>Continue with Google</p>
-                    </div>
-                    <div className=' flex items-center justify-center w-[310px] h-[40px] border border-solid border-slate-900 mt-5 rounded-[80px] p-[15px] cursor-pointer'>
-                        <img src="../../public/img/faceb.png" alt="" className='w-[23px] h-[23px] mr-2' />
-                        <p className=' text-[14px] font-semibold ml-2'>Continue with facebook</p>
-                    </div>
+                    <Google />
                     <div className='flex items-end justify-center'>
                         <div className=' w-[150px] text-[12px] border-b border-[#1c1c1c] h-[30px] m-2'></div>
                         <img src="../../public/img/O.png" alt="O" className='flex m-2' />
