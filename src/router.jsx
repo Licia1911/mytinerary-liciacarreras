@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import MainLayout from './layouts/MainLayout'
 import SignIn from "./pages/SignIn"
@@ -10,7 +11,7 @@ import Profile from "./pages/Profile";
 
 
 
-const router = createBrowserRouter([
+const router = createHashRouter([
     {
         path: '/', element: <MainLayout />,
         children: [
