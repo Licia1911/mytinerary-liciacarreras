@@ -65,7 +65,7 @@ export default function FormSignIn() {
                     <Google />
                     <div className='flex items-end justify-center'>
                         <div className=' w-[150px] text-[12px] border-b border-[#1c1c1c] h-[30px] m-2'></div>
-                        <img src="../../public/img/O.png" alt="O" className='flex m-2' />
+                        <img src="../../img/O.png" alt="O" className='flex m-2' />
                         <div className=' w-[150px] text-[12px] border-b border-[#1c1c1c] h-[30px] m-2'></div>
                     </div>
                     <p className=' text-[12px] tetx-[#1C1C1C] font-semibold mt-4'>Sign up with email</p>
