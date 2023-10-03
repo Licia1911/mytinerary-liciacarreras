@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import apiUrl from "../apiURL";
+import apiUrl from "../apiUrl";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"
 import { useDispatch } from "react-redux";

@@ -3,7 +3,7 @@ import activity_actions from "../store/actions/activities"
 const { read_activities_from_itinerary } = activity_actions
 import { useEffect, useState } from "react"
 import axios from "axios"
-import apiUrl from "../apiURL"
+import apiUrl from "../apiUrl"
 
 
 

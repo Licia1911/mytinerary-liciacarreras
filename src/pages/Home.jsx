@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import Carousel from "../components/Carousel"
-import axios from "axios"
 import { Link as Anchor } from 'react-router-dom'
 import IconoAnimado from '../components/IconoAnimado'
-import apiUrl from '../../src/apiUrl.js'
-import { useSelector,useDispatch } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import city_actions from "../store/actions/cities"
-const {read_carousel} = city_actions
+const { read_carousel } = city_actions
 
 export default function Home() {
 
@@ -17,11 +15,11 @@ export default function Home() {
     const carousel = useSelector(store => store.cities.carousel)
     console.log(carousel)
     const dispatch = useDispatch()
-    
+
 
     useEffect(
         () => {
-            if( carousel.length === 0 ) {
+            if (carousel.length === 0) {
                 dispatch(read_carousel())
             }
 
