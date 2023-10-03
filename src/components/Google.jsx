@@ -35,6 +35,8 @@ export default function () {
 
     }, []);
 
+    navigate("/");
+
 
     return <div ref={googleButton}></div>;
 
