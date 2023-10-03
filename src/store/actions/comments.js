@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import apiURL from "../../apiURL";
+import apiUrl from '../../apiUrl'
 
 const read_comments = createAsyncThunk(
     'read_comments',
     async (obj) => {
         try {
-            let data = await axios(apiURL + 'comments?itinerary_id=' + obj);
+            let data = await axios(apiUrl + 'comments?itinerary_id=' + obj);
             return {
                 comments: data.data.response
             }
@@ -25,7 +25,7 @@ const create_comment = createAsyncThunk(
         try {
             let token = localStorage.getItem('token');
             let authorization = { headers: { 'Authorization': `Bearer ${token}` } };
-            let data = await axios.post(apiURL + 'comments', obj, authorization);
+            let data = await axios.post(apiUrl + 'comments', obj, authorization);
             return {
                 commentCreated: data.data.response
 
@@ -45,7 +45,7 @@ const update_comment = createAsyncThunk(
         try {
             let token = localStorage.getItem('token');
             let authorization = { headers: { 'Authorization': `Bearer ${token}` } };
-            let data = await axios.put(apiURL + 'comments/' + obj.comment_id, obj.data, authorization);
+            let data = await axios.put(apiUrl + 'comments/' + obj.comment_id, obj.data, authorization);
             console.log(data)
             return {
                 commentUpdated: data.data.response,
@@ -66,7 +66,7 @@ const delete_comment = createAsyncThunk(
         try {
             let token = localStorage.getItem('token');
             let authorization = { headers: { 'Authorization': `Bearer ${token}` } };
-            let data = await axios.delete(apiURL + 'comments/' + comment_id, authorization);
+            let data = await axios.delete(apiUrl + 'comments/' + comment_id, authorization);
             // console.log(data.data.success)
             return {
                 commentDeleted: data.data.success
