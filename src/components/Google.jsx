@@ -22,23 +22,16 @@ export default function () {
 
     };
     useEffect(() => {
-        window.onload = function () {
-            /* global google */
+        if (window.google) {
             window.google.accounts.id.initialize({
                 client_id: import.meta.env.VITE_GOOGLE_ID,
-                callback: handleCredentialResponse,
+                callback: handleCredentialResponse
             });
             window.google.accounts.id.renderButton(
                 googleButton.current,
-                {
-                    theme: "outline",
-                    size: "large",
-                    type: "standard",
-                    text: "signin_with",
-                    shape: "circle"
-                }
+                { type: 'standard', shape: 'pill', theme: "filled_black", size: "medium", text: 'signin_with' }  // customization attributes
             );
-        };
+        }
 
     }, []);
 
