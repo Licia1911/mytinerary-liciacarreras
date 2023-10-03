@@ -31,7 +31,7 @@ export default function () {
                 googleButton.current,
                 { type: 'standard', shape: 'pill', theme: "outline", size: "large", text: 'signin_with' }  // customization attributes
             );
-            navigate("/");
+            navigate("/home");
         }
 
     }, []);
