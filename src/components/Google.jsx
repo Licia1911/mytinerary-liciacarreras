@@ -29,7 +29,7 @@ export default function () {
             });
             window.google.accounts.id.renderButton(
                 googleButton.current,
-                { type: 'standard', shape: 'pill', theme: "filled_black", size: "medium", text: 'signin_with' }  // customization attributes
+                { type: 'standard', shape: 'pill', theme: "outline", size: "large", text: 'signin_with' }  // customization attributes
             );
         }
 
