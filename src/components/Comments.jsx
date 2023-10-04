@@ -12,6 +12,7 @@ export default function Comments({ id, user }) {
     const [reloadComment, setReloadComment] = useState(true);
     let inputComment = useRef();
     const dispatch = useDispatch();
+    const defaultPhoto = '../../img/perfil1.png'
 
 
 
@@ -87,7 +88,7 @@ export default function Comments({ id, user }) {
                 }
             </div>
             <div className="flex items-center">
-                <img className="inline select-none mr-3 ring-2 ring-purple-600 rounded-full object-cover w-8 h-8 group-hover:drop-shadow-md" src={user.photo} alt="profile photo" />
+                <img className="inline select-none mr-3 ring-2 ring-purple-600 rounded-full object-cover w-8 h-8 group-hover:drop-shadow-md" src={user.photo || defaultPhoto} alt="profile photo" />
                 <form className="flex w-full relative">
                     <input ref={inputComment} maxLength={200} className="flex pl-4 pr-14 py-3 w-full outline-none bg-slate-200 rounded-full text-base focus:outline-teal-500 focus:bg-slate-100" type="text" placeholder="Leave a comment..." />
                     <button onClick={createComment} type="submit" className="absolute right-4 top-2 border bg-slate-50 border-neutral-400 rounded-full p-1 hover:text-white hover:bg-teal-500 active:bg-teal-300">
